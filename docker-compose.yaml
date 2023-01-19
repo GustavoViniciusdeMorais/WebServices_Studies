@@ -1,15 +1,15 @@
 version: '3'
 
 services:
-    nginx:
+    ubuntu:
         build:
             context: .
-            dockerfile: nginx.dockerfile
+            dockerfile: ubuntu.dockerfile
         ports:
             - 80:80
         volumes:
             - ./:/var/www/html
-        container_name: ngnginx
+        container_name: ngubuntu
         depends_on:
             - php
         networks:
