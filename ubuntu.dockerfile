@@ -14,4 +14,6 @@ RUN apt install systemctl -y
 
 RUN mkdir /var/www/mysite
 
+RUN mkdir /var/www/other
+
 ENTRYPOINT ["tail", "-f", "/dev/null"]

@@ -11,9 +11,11 @@ services:
             - ./:/var/www/html
             - ./server:/etc/nginx
             - ./www:/var/www/mysite
+            - ./other:/var/www/other
         container_name: ngubuntu
         networks:
-            - ng-app-network
+            app-network:
+                ipv4_address: 10.0.0.2
 
 networks:
     ng-app-network:
