@@ -18,11 +18,18 @@ apt install curl -y
 
 ```
 
+### Copy files from container to local folder
+```
+docker cp container_id:/etc/nginx/ server/
+```
+
 ### Server criation
 ```sh
 cd /var/www/
 
 mkdir mysite
+
+cd mysite
 
 nano index.html
 

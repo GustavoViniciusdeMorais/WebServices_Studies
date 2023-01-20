@@ -9,19 +9,9 @@ services:
             - 80:80
         volumes:
             - ./:/var/www/html
+            - ./server:/etc/nginx
+            - ./www:/var/www/mysite
         container_name: ngubuntu
-        depends_on:
-            - php
-        networks:
-            - ng-app-network
-
-    php:
-        build:
-            context: .
-            dockerfile: php.dockerfile
-        volumes:
-            - ./:/var/www/html
-        container_name: ngphp
         networks:
             - ng-app-network
 
