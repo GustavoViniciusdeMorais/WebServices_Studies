@@ -14,7 +14,7 @@ services:
             - ./other:/var/www/other
         container_name: ngubuntu
         networks:
-            app-network:
+            ng-app-network:
                 ipv4_address: 10.0.0.2
 
 networks:

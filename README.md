@@ -18,6 +18,12 @@ apt install curl -y
 
 ```
 
+### Read error logs
+```
+sudo tail -f /var/log/nginx/error.log
+sudo chown -R nginx:nginx /var/www/html
+```
+
 ### Copy files from container to local folder
 ```
 docker cp container_id:/etc/nginx/ server/
