@@ -1,41 +1,33 @@
-version: '3'
+version: '3.8'
 
 services:
-    ubuntu:
-        build:
-            context: .
-            dockerfile: ubuntu.dockerfile
-        ports:
-            - 80:80
-            - 81:81
-        volumes:
-            - ./:/var/www/html
-            - ./server:/etc/nginx
-            - ./www:/var/www/mysite
-            - ./other:/var/www/other
-        container_name: ngubuntu
-        networks:
-            ng-app-network:
-                ipv4_address: 10.0.0.2
-    
-    api_python:
-        build:
-            context: .
-            dockerfile: ./api_python/python.dockerfile
-        ports:
-            - 8000:8000
-        volumes:
-            - ./api_python/api:/code
-        container_name: api_python
-        networks:
-            ng-app-network:
-                ipv4_address: 10.0.0.3
-            
+  auth:
+    build:
+      context: ./auth
+      dockerfile: Dockerfile
+    networks:
+      - app-network
+    ports:
+      - "9090:9090"
+
+  service1:
+    build:
+      context: ./service1
+      dockerfile: Dockerfile
+    networks:
+      - app-network
+    ports:
+      - "9091:9091"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/nginx.conf
+    networks:
+      - app-network
 
 networks:
-    ng-app-network:
-        driver: bridge
-        ipam:
-            driver: default
-            config:
-                - subnet: "10.0.0.0/16"
+  app-network:
+    driver: bridge

@@ -100,8 +100,8 @@ Let's start by reviewing the Dockerfile for the `auth` service and then creating
 
 #### Dockerfile for Auth Service
 
-Here is a simple Dockerfile for the `auth` service:
-
+Here is a simple Dockerfile for the `auth` service:<br>
+[Details](./goDockerFile.md)
 ```Dockerfile
 FROM golang:1.21-alpine as builder
 
@@ -183,7 +183,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/default.conf:/etc/nginx/nginx.conf
     networks:
       - app-network
 
@@ -229,7 +229,7 @@ Assuming the following directory structure:
 To bring up the entire stack, navigate to the project root and run:
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 This command will build the Docker images for the services, start the containers, and set up the network. You can access the services via the Nginx reverse proxy.
