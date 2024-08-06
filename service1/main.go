@@ -14,5 +14,5 @@ func main() {
 		return c.String(http.StatusOK, "Service1 endpoint reached")
 	})
 
-	e.Start(":9091")
+	e.Start("0.0.0.0:9091")
 }

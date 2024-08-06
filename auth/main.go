@@ -20,5 +20,5 @@ func main() {
 		return c.String(http.StatusOK, "Token valid")
 	})
 
-	e.Start(":9090")
+	e.Start("0.0.0.0:9090")
 }
