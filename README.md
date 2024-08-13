@@ -1,5 +1,9 @@
 # Microservices example with NGINX and Golang
 
+```sh
+export PATH=$PATH:/usr/local/go/bin
+```
+
 #### NGINX Config
 [Details](./nginxConfig.md)
 ```conf

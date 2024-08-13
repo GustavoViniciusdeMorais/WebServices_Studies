@@ -1,19 +1,9 @@
-FROM golang:1.22.5-alpine as builder
+FROM gustavovinicius/golang:nginx
 
-WORKDIR /app
+WORKDIR /var/www/html
 
 COPY . .
 
-RUN go mod vendor
-
-RUN go build -o main
-
-FROM alpine:latest
-
-WORKDIR /app
-
-COPY --from=builder /app/main .
-
 EXPOSE 9091
 
-CMD ["./main"]
+ENTRYPOINT ["tail", "-f", "/dev/null"]

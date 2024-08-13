@@ -1,6 +1,6 @@
 module example.com
 
-go 1.22.5
+go 1.22.4
 
 require github.com/labstack/echo/v4 v4.12.0
 
