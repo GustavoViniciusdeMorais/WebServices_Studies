@@ -1,95 +1,57 @@
-# NGINX Study
+# API Gateway
 
-Created By: Gustavo Morais.
-
-### Installs
-```sh
-docker exec -it -u 0 ngubuntu bash
-
-apt update
-
-apt install nginx -y
-
-service --status-all
-
-apt install nano
-
-apt install curl -y
-
-```
-
-### Read error logs
-```
-sudo tail -f /var/log/nginx/error.log
-sudo chown -R nginx:nginx /var/www/html
-```
-
-### Copy files from container to local folder
-```
-docker cp container_id:/etc/nginx/ server/
-```
-
-### Server criation
-```sh
-cd /var/www/
-
-mkdir mysite
-
-cd mysite
-
-nano index.html
-
-cd /etc/nginx/sites-available/
-
-ip addr
-
-nano mysite.conf
-
-```
-
-### index.html
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>HTML5</title>
-</head>
-<body>
-    Gustavo
-</body>
-</html>
-```
-
-#### mysite.conf
+### Nginx config
 ```conf
-server {
-    listen 10.0.0.3:80;
-
-    root /var/www/mysite;
-
-    index index.html;
+events {
+    # You can leave this block empty or configure specific settings if needed
+    worker_connections 1024;
 }
+
+http {
+    upstream users_api_server {
+        ip_hash;
+        server api_python:8000;
+    }
+
+    limit_req_zone $binary_remote_addr zone=user_rate:10m rate=1r/s;
+
+    server {
+        listen 81 default_server;
+        listen [::]:81 default_server;
+
+        #
+        # Users API
+        #
+        location /api/users {
+            limit_req zone=user_rate;
+            limit_req_status 429;
+            proxy_pass http://users_api_server;
+        }
+    }
+}
+
 ```
 
-### Enable site config
+### Config the nginx with default file conf
 ```sh
-
-cd /etc/nginx/sites-enabled/
-
-ln -s /etc/nginx/sites-available/mysite.conf /etc/nginx/sites-enabled/mysite
-
-service nginx status
-
-service nginx restart
-
-service nginx status
-
-nginx -t # test if nginx config is fine
-
+sudo ./dockermg.sh ngubuntu bash
+cat nginx/default.conf > /etc/nginx/nginx.conf
+nginx -t
+service nginx start
 ```
 
-### Test if config is running
+### Other option is to build config alias to file
+```sh
+ln -s /etc/nginx/sites-available/api_gateway.conf /etc/nginx/sites-enabled/api_gateway
 ```
-curl 10.0.0.3
+
+### Start python api
+```sh
+sudo ./dockermg.sh api_python sh
+uvicorn main:app --reload --host=0.0.0.0
+```
+
+### Test api gateway
+```sh
+curl --request GET http://localhost:81/api/users
 ```
