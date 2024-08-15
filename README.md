@@ -1,6 +1,7 @@
 # API Gateway
 
 ### Nginx config
+- [Explanation](./nginx_config_details.md)
 ```conf
 events {
     # You can leave this block empty or configure specific settings if needed
