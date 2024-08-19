@@ -1,4 +1,4 @@
-FROM gustavovinicius/webserver:main
+FROM gustavovinicius/webserver:nginxv124
 
 # RUN apt update
 
@@ -12,8 +12,10 @@ FROM gustavovinicius/webserver:main
 
 # RUN apt install systemctl -y
 
-RUN mkdir /var/www/mysite
+# RUN mkdir /var/www/mysite
 
-RUN mkdir /var/www/other
+# RUN mkdir /var/www/other
+
+WORKDIR /var/www/html
 
 ENTRYPOINT ["tail", "-f", "/dev/null"]

@@ -31,7 +31,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx/default.conf:/etc/nginx/nginx.conf
+      - ./:/var/www/html
     networks:
       - app-network
 
