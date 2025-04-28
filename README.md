@@ -93,3 +93,25 @@ nginx -t # test if nginx config is fine
 ```
 curl 10.0.0.3
 ```
+
+### Config second site
+```bash
+cp /var/www/html/nginx/second.conf /etc/nginx/sites-available/second
+ln -s /etc/nginx/sites-available/second /etc/nginx/sites-enabled/second
+ls -lh /etc/nginx/sites-enabled/
+nginx -t
+curl [IP_SERVER]:81/second
+```
+### Second conf file
+```
+server {
+    listen 81;
+    server_name second;
+
+    root /var/www/html/php/second;
+    location /second {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+    ...
+}
+```
