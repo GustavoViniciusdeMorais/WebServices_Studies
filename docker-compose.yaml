@@ -29,6 +29,19 @@ services:
         networks:
             ng-app-network:
                 ipv4_address: 10.0.0.3
+
+    api_php:
+        build:
+            context: .
+            dockerfile: ./api_php/php.dockerfile
+        ports:
+            - 8002:80
+        volumes:
+            - ./api_php/:/var/www/html/api
+        container_name: api_php
+        networks:
+            ng-app-network:
+                ipv4_address: 10.0.0.4
             
 
 networks:
