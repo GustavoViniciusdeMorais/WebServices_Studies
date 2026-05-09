@@ -1,6 +1,8 @@
 services:
-    ubuntu:
-        image: gustavovinicius/ubuntu_awscli:v2
+    aws:
+        build:
+            context: .
+            dockerfile: aws.dockerfile
         ports:
             - 80:80
             - 81:81
