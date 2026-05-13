@@ -20,3 +20,12 @@ aws configure
 region: us-east-2
 output format: json
 ```
+
+### Tofu
+```bash
+cd tofus
+tofu init
+tofu plan
+tofu apply -auto-approve
+tofu destroy -auto-approve
+```
