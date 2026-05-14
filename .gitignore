@@ -1,2 +1,4 @@
 .DS_*
-.terraform*
+terraform*
+terraform.tfstate.backup
+*.pem*

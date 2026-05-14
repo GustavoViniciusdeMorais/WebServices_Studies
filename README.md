@@ -17,7 +17,7 @@ docker compose up -d --build aws
 ### Config keys
 ```bash
 aws configure
-region: us-east-2
+region: us-east-2, us-west-2
 output format: json
 ```
 
@@ -27,5 +27,11 @@ cd tofus
 tofu init
 tofu plan
 tofu apply -auto-approve
+tofu apply --target=aws_instance.web
 tofu destroy -auto-approve
+
+tofu state list
+tofu state show aws_instance.web | grep region
+
+ssh -i my-ec2-key.pem ubuntu@[public ip]
 ```
