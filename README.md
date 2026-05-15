@@ -27,11 +27,26 @@ cd tofus
 tofu init
 tofu plan
 tofu apply -auto-approve
-tofu apply --target=aws_instance.web
-tofu destroy -auto-approve
+tofu apply -auto-approve --target=aws_instance.web
+tofu destroy -auto-approve --target=aws_instance.web
 
 tofu state list
 tofu state show aws_instance.web | grep region
 
-ssh -i my-ec2-key.pem ubuntu@[public ip]
+ssh -i my-ec2-key.pem ubuntu@[public ip] -p 22
+```
+### Ansible
+```bash
+apt update
+apt install software-properties-common -y
+add-apt-repository --yes --update ppa:ansible/ansible
+apt install ansible -y
+reset
+ansible --help
+
+cd my-playbooks
+# Run the playbook
+ansible-playbook -i inventory.ini playbook.yml
+# Verify services
+ansible webservers -i inventory.ini -m shell -a "systemctl status nginx postgresql php8.3-fpm --no-pager"
 ```

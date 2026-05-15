@@ -13,7 +13,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "web" {
   # This now references the dynamically found AMI
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "m7i-flex.large"
+  instance_type = "c7i-flex.large"
   key_name      = "my-ec2-key"  # This must match the name in the AWS console
 
   tags = {
