@@ -1,0 +1,11 @@
+packages:
+  - nginx
+  - postgresql
+  - postgresql-contrib
+  - php8.3
+  - php8.3-fpm
+  - php8.3-pgsql
+  - php8.3-cli
+  - php8.3-common
+  - php8.3-mbstring
+  - php8.3-xml

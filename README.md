@@ -44,9 +44,11 @@ apt install ansible -y
 reset
 ansible --help
 
-cd my-playbooks
+cd my-playbooks/local_server
 # Run the playbook
 ansible-playbook -i inventory.ini playbook.yml
 # Verify services
-ansible webservers -i inventory.ini -m shell -a "systemctl status nginx postgresql php8.3-fpm --no-pager"
+ansible webservers -i inventory.ini -m shell -a "service nginx status"
+
+ansible-playbook -i inventory.ini stop_services.yml
 ```

@@ -1,0 +1,11 @@
+- hosts: webservers
+  become: yes
+  tasks:
+    - name: Stop all services
+      service:
+        name: "{{ item }}"
+        state: stopped
+      loop:
+        - nginx
+        - postgresql
+        - php8.3-fpm

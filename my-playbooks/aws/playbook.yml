@@ -14,11 +14,11 @@
         state: present
 
     - name: Start and enable services
-      systemd:
+      service:
         name: "{{ item }}"
         state: started
         enabled: yes
       loop:
         - nginx
         - postgresql
-        - php8.1-fpm
+        - php8.3-fpm

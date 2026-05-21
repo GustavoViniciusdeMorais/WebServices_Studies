@@ -1,0 +1,24 @@
+- hosts: webservers
+  become: yes
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install packages
+      apt:
+        name: "{{ packages }}"
+        state: present
+
+    - name: Start and enable services
+      service:
+        name: "{{ item }}"
+        state: started
+        enabled: yes
+      loop:
+        - nginx
+        - postgresql
+        - php8.3-fpm
