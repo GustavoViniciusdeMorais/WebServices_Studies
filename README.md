@@ -35,6 +35,18 @@ tofu state show aws_instance.web | grep region
 
 ssh -i my-ec2-key.pem ubuntu@[public ip] -p 22
 ```
+### SSH local server
+Before use ansible
+```bash
+ssh-key -t rsa # /root/.ssh/id_server
+eval $(ssh-agent ) && ssh-add /root/.ssh/id_server
+# must ssh log from jumphost
+ssh root@10.0.0.3 -p 22
+# in server
+touch /root/.ssh/authorized_keys
+echo key.pub > /root/.ssh/authorized_keys
+service ssh restart
+```
 ### Ansible
 ```bash
 apt update
