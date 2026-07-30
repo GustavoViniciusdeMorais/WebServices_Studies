@@ -3,6 +3,7 @@
 Created By: Gustavo Morais.
 
 - [HTTP Nginx](./nginx.md)
+- [Python File Server](./python_file_server.md)
 - [Queue Rabbitmq](./rabbitmq.md)
 
 ### Nginx Docker
