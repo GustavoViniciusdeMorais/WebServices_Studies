@@ -7,6 +7,9 @@ The commands only work inside it.
 my_rabbitmq:
     image: rabbitmq:3.9-management
     container_name: my_rabbitmq
+    environment:
+        RABBITMQ_DEFAULT_USER: user
+        RABBITMQ_DEFAULT_PASS: password
     ports:
         - '5672:5672'
         - '15672:15672'
