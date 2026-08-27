@@ -1,4 +1,4 @@
-FROM gustavovinicius/webserver:main
+FROM gustavovinicius/gusphp:81
 
 # RUN apt update
 
@@ -12,8 +12,19 @@ FROM gustavovinicius/webserver:main
 
 # RUN apt install systemctl -y
 
-RUN mkdir /var/www/mysite
+# RUN apt install git -y
 
-RUN mkdir /var/www/other
+ADD ./nginx/default.conf /etc/nginx/sites-available/default
+
+# RUN chmod u+x phpInstall.sh
+
+# RUN phpInstall.sh
+
+# RUN mkdir /var/www/mysite
+
+# RUN mkdir /var/www/other
+
+WORKDIR /var/www/html
+
 
 ENTRYPOINT ["tail", "-f", "/dev/null"]
