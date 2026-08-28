@@ -1,0 +1,19 @@
+{
+    "name": "gustavomorais/myqueue",
+    "description": "php my_rabbitmq",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Gustavomorais\\Myqueue\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "GustavoViniciusdeMorais"
+        }
+    ],
+    "require": {
+        "php-amqplib/php-amqplib": "^3.7"
+    }
+}
