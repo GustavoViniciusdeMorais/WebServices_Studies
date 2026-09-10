@@ -1,1 +1,4 @@
 .DS_*
+__pycache__
+composer.lock
+*vendor*
