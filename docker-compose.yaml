@@ -9,8 +9,8 @@ services:
             - 80:80
             - 81:81
         volumes:
-            - ./:/var/www/html
-            - ./www:/var/www/mysite
+            - ./nginx:/home/gustavo/nginx
+            - ./www:/var/www/html
             - ./other:/var/www/other
         container_name: ngubuntu
         networks:
